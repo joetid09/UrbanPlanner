@@ -4,11 +4,13 @@ namespace Planner
 {
     public class Building
     {
-        string _designer = "Joseph";
-        DateTime _dateConstructed = new DateTime();
+        //private fiels (can only be used inside Building class)
+        string _designer = "Joseph Tidwell";
+        DateTime _dateConstructed { get; set; }
         string _address = "";
-        string _owner = "Joe";
+        string _owner = "";
 
+        //Public properites (can be used throughout page)
         public int Stories { get; set; }
         public double Width { get; set; }
         public double Depth { get; set; }
@@ -18,6 +20,30 @@ namespace Planner
             {
                 return Width * Depth * (3 * Stories);
             }
+        }
+
+        public Building(string address)
+        {
+            this._address = address;
+        }
+
+        public void Construct()
+        {
+            _dateConstructed = DateTime.Now;
+        }
+
+        public void Purchase(string name)
+        {
+            _owner = name;
+        }
+
+        public void PurchaseHistory()
+        {
+            Console.WriteLine(_address);
+            Console.WriteLine("-------------");
+            Console.WriteLine($"Constructed on: {_dateConstructed}");
+            Console.WriteLine($"Owned by: {_owner}");
+            Console.WriteLine($"{Volume} cubic meters of space");
         }
     }
 }
